@@ -4,7 +4,7 @@ let qtdCards;
 let carta_certa;
 let carta_certa2;
 let cont_click = 0;
-let carta1_indice;
+let carta1_indice = 0;
 let x = 0;
 let ganhou = 0;
 cont_click_final = 0;
@@ -51,30 +51,38 @@ addCards();
 
 
 function virar(indice){
-    cont_click_final++;
+    if(indice != carta1_indice || carta1_indice == 0){
+        cont_click_final++;
+    }
     if(cont_click == 0){
         carta_certa = virar_f(indice);
         cont_click =1; 
         carta1_indice = indice;
     }
 
-    else if(cont_click == 1){
-        carta_certa2 = gifsAuxs[indice];
-        let virar_frente2 = DOM_cards[indice].querySelector('.frente');
-        let virar_fundo2 = DOM_cards[indice].querySelector('.fundo');
-        virar_fundo2.classList.remove("apagado");
-        virar_frente2.classList.add("apagado"); 
-        cont_click = 0;
-        if(carta_certa != carta_certa2){
-            setTimeout(function(){
-                virar_fundo2.classList.add("apagado");
-                virar_frente2.classList.remove("apagado");
-                desvirar_f(carta1_indice);
-                
-            },1000);
-        }else{
-            ganhou++;
+    else if(cont_click >= 1){
+        if(cont_click == 1){
+            carta_certa2 = gifsAuxs[indice];
+            let virar_frente2 = DOM_cards[indice].querySelector('.frente');
+            let virar_fundo2 = DOM_cards[indice].querySelector('.fundo');
+            virar_fundo2.classList.remove("apagado");
+            virar_frente2.classList.add("apagado"); 
+            cont_click = 0;
+            if(carta_certa != carta_certa2){
+                setTimeout(function(){
+                    virar_fundo2.classList.add("apagado");
+                    virar_frente2.classList.remove("apagado");
+                    desvirar_f(carta1_indice);
+                    
+                },1000);
+            }else{
+                ganhou++;
+            }
         }
+        else{
+            cont_click = 1;
+        }
+        
 
     }
     if(ganhou == qtdCards/2) alert(`Você ganhou em ${cont_click_final} jogadas`);

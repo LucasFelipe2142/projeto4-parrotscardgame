@@ -41,6 +41,7 @@ justify-content: center;
 margin-left: 17px;
 margin-right: 17px;
 margin-bottom: 34px;
+transition: all 300;
 }
 
 .frente img{
@@ -63,17 +64,6 @@ margin-bottom: 34px;
     
 }
 
-.back-face {
-    transform: rotateY(180deg);
-}
-
-.card:hover .back-face {
-    transform: rotateY(0deg);
-}
-
-.card:hover .front-face {
-    transform: rotateY(-180deg);
-}
 
 
 
