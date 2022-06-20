@@ -6,6 +6,8 @@ let carta_certa2;
 let cont_click = 0;
 let carta1_indice;
 let x = 0;
+let ganhou = 0;
+cont_click_final = 0;
 while(valid == 0){
     qtdCards = Number(prompt('Com quantas cartas quer jogar? (apenas números pares entre 4 e 14)'));
     if(qtdCards % 2 == 0 && qtdCards >= 4 && qtdCards <=14 ) valid = 1;
@@ -49,6 +51,7 @@ addCards();
 
 
 function virar(indice){
+    cont_click_final++;
     if(cont_click == 0){
         carta_certa = virar_f(indice);
         cont_click =1; 
@@ -69,10 +72,15 @@ function virar(indice){
                 desvirar_f(carta1_indice);
                 
             },1000);
+        }else{
+            ganhou++;
         }
+
     }
-    
+    if(ganhou == qtdCards/2) alert(`Você ganhou em ${cont_click_final} jogadas`);
 }
+
+
 
 function virar_f(indice){
     let virar_frente = DOM_cards[indice].querySelector('.frente');
